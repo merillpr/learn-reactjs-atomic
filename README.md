@@ -18,6 +18,5 @@ this tutorial is from https://youtu.be/rNSfMxMPWqc?si=3Og0kmllhVpcrsX0
 1. Nodejs V18.12.0
    
 # How to run this
-``npm install``
-...
-``npm run dev``
+1. ``npm install``
+2. ``npm run dev``
