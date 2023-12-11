@@ -14,11 +14,10 @@ Currently, two official plugins are available:
 
 this tutorial is from https://youtu.be/rNSfMxMPWqc?si=3Og0kmllhVpcrsX0
 
-#Requirement
+# Requirement
 1. Nodejs V18.12.0
    
-#How to run this
+# How to run this
 ``npm install``
-...............
+...
 ``npm run dev``
-...............
