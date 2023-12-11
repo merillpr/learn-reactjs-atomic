@@ -26,11 +26,14 @@ export default function LoginFragment(props) {
             placeText="enter your password..."
           />
         </div>
-        <Button buttonText={namePage} />
+        <Button buttonText={namePage} type="submit" classname="mt-4 mb-1" />
       </form>
       <p className="text-center">
         {question}{" "}
-        <Link to={`/${destLink}`} className="text-green-500 font-semibold">
+        <Link
+          to={`/${destLink}`}
+          className="text-green-500 font-semibold hover:text-green-600"
+        >
           {destText}
         </Link>
       </p>
