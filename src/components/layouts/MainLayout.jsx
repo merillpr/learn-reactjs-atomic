@@ -15,7 +15,7 @@ export default function MainLayout(props) {
         <Button
           buttonText="Logout"
           type="button"
-          classname="w-20"
+          classname="w-16"
           handleClick={() => handleClick("")}
         ></Button>
       </div>

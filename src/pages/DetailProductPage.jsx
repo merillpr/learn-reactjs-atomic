@@ -1,40 +1,40 @@
-import Button from "../elements/Button";
-import Input from "../elements/Input";
-import MainLayout from "../layouts/MainLayout";
+import Button from "../components/elements/Button";
+import Input from "../components/elements/Input";
+import MainLayout from "../components/layouts/MainLayout";
 
 const transactions = [
   {
-    no: 1,
+    id: 1,
     date: "1/12/2023",
     status: "In",
     qty: 50,
   },
   {
-    no: 2,
+    id: 2,
     date: "1/12/2023",
     status: "Out",
     qty: 10,
   },
   {
-    no: 3,
+    id: 3,
     date: "2/12/2023",
     status: "Out",
     qty: 5,
   },
   {
-    no: 4,
+    id: 4,
     date: "10/12/2023",
     status: "Out",
     qty: 3,
   },
   {
-    no: 5,
+    id: 5,
     date: "15/12/2023",
     status: "Out",
     qty: 2,
   },
   {
-    no: 6,
+    id: 6,
     date: "25/12/2023",
     status: "In",
     qty: 10,
@@ -76,7 +76,7 @@ export default function DetailProductPage() {
                   viewBox="0 0 16 16"
                 >
                   <path
-                    fillRule="evenodd"
+                    fillRule="eveiddd"
                     d="M8 1.5a.5.5 0 0 1 .5.5v8.793l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 10.293V2a.5.5 0 0 1 .5-.5z"
                   />
                 </svg>
@@ -97,7 +97,7 @@ export default function DetailProductPage() {
                   viewBox="0 0 16 16"
                 >
                   <path
-                    fillRule="evenodd"
+                    fillRule="eveiddd"
                     d="M8 14.5a.5.5 0 0 1-.5-.5V5.707L4.854 8.354a.5.5 0 1 1-.708-.708l3.5-3.5a.5.5 0 0 1 .708 0l3.5 3.5a.5.5 0 1 1-.708.708L8.5 5.707V14a.5.5 0 0 1-.5.5z"
                   />
                 </svg>
@@ -110,7 +110,7 @@ export default function DetailProductPage() {
               </div>
             </div>
           </div>
-          <form onSubmit="">
+          <form>
             <Input
               classname="my-5"
               labelName="Quantity"
@@ -138,7 +138,7 @@ export default function DetailProductPage() {
           <table className="w-full">
             <thead>
               <tr>
-                <th className="w-1/5">No</th>
+                <th className="w-1/5">id</th>
                 <th className="w-2/5">date</th>
                 <th className="w-1/5">Status</th>
                 <th className="w-1/5">Qty</th>
@@ -146,8 +146,8 @@ export default function DetailProductPage() {
             </thead>
             <tbody>
               {transactions.map((tr) => (
-                <tr key="tr.no">
-                  <td className="w-1/5 text-center">{tr.no}</td>
+                <tr key={tr.id}>
+                  <td className="w-1/5 text-center">{tr.id}</td>
                   <td className="w-2/5 text-center">{tr.date}</td>
                   <td className="w-1/5 text-center">{tr.status}</td>
                   <td className="w-1/5 text-center">{tr.qty}</td>

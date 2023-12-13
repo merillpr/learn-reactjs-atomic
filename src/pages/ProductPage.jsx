@@ -1,5 +1,5 @@
-import ProductFragment from "../fragments/ProductFragment";
-import MainLayout from "../layouts/MainLayout";
+import ProductFragment from "../components/fragments/ProductFragment";
+import MainLayout from "../components/layouts/MainLayout";
 
 const products = [
   {

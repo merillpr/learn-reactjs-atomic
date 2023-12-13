@@ -1,5 +1,5 @@
-import LoginFragment from "../fragments/LoginFragment";
-import AuthLayout from "../layouts/AuthLayout";
+import LoginFragment from "../components/fragments/LoginFragment";
+import AuthLayout from "../components/layouts/AuthLayout";
 
 export default function Login() {
   return (
