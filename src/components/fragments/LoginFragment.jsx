@@ -5,11 +5,18 @@ import Button from "../elements/Button";
 export default function LoginFragment(props) {
   const { namePage, question, destLink, destText } = props;
 
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    localStorage.setItem('email',e.target.email.value);
+    localStorage.setItem('password',e.target.password.value);
+    window.location.href="/products";
+  }
+
   return (
     <div className="w-full max-w-xs border border-green-500 p-10 rounded-bl-3xl rounded-tr-3xl">
       <h1 className="text-green-500 text-xl font-bold">{namePage}</h1>
       <p className="mb-6">Welcome back, insert your identity below!</p>
-      <form action="">
+      <form onSubmit={handleOnSubmit}>
         <div className="mb-3">
           <Input
             labelName="Email"

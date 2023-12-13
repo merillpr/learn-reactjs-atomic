@@ -1,45 +1,56 @@
 import ProductFragment from "../fragments/ProductFragment";
+import MainLayout from "../layouts/MainLayout";
 
 const products = [
   {
     id: 1,
     image: "./img/daia-violet-620.webp",
     name: "Daia Violet 620gr",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem suscipit laboriosam recusandae natus. Quisquam error libero earum deserunt, rerum nostrum nesciunt, ipsam iusto ea, facilis maiores ab necessitatibus soluta molestiae!",
-    price: "Rp 7000",
+    stock: 50,
+    purchase_price: 6250,
+    selling_price: 7000,
   },
   {
     id: 2,
     image: "./img/gula-pasir-gulaku-1.png",
     name: "Gula Pasir Gulaku 1kg",
-    desc: "Quisquam error libero earum deserunt, rerum nostrum nesciunt, ipsam iusto ea, facilis maiores ab necessitatibus soluta molestiae!",
-    price: "Rp 25000",
+    stock: 57,
+    purchase_price: 24100,
+    selling_price: 25000,
   },
   {
     id: 3,
     image: "./img/minyak-goreng-bimoli-200.jpg",
     name: "Minyak Goreng Bimoli 200ml",
-    desc: "Autem suscipit laboriosam recusandae natus. Quisquam error libero earum deserunt, rerum nostrum nesciunt, ipsam iusto ea, facilis maiores ab necessitatibus soluta molestiae!",
-    price: "Rp 20000",
+    stock: 24,
+    purchase_price: 13750,
+    selling_price: 15000,
   },
   {
     id: 4,
     image: "./img/sunlight-jeruk-nipis-755.webp",
     name: "Sunlight Jeruk Nipis 755ml",
-    desc: "Quisquam error libero earum deserunt, rerum nostrum nesciunt, ipsam iusto ea, facilis maiores ab necessitatibus soluta molestiae!",
-    price: "Rp 14000",
+    stock: 43,
+    purchase_price: 13000,
+    selling_price: 14000,
   },
 ];
 
 export default function ProductPage() {
+  const email = localStorage.getItem("email");
+
   return (
-    <div className="flex flex-wrap justify-center py-4 bg-slate-50 min-h-screen ">
+    <MainLayout email={email}>
       <div className="grid grid-cols-3 gap-5 max-w-screen">
         {products.map((product) => (
-          <ProductFragment key={product.id}>
+          <ProductFragment key={product.id} id={product.id}>
             <ProductFragment.Header image={product.image} />
-            <ProductFragment.Body name={product.name} desc={product.desc} />
-            <ProductFragment.Footer price={product.price} />
+            <ProductFragment.Body
+              name={product.name}
+              stock={product.stock}
+              purchasePrice={product.purchase_price}
+              sellingPrice={product.selling_price}
+            />
           </ProductFragment>
         ))}
       </div>
@@ -49,6 +60,6 @@ export default function ProductPage() {
       <div className="w-full flex justify-center text-gray-500">
         {products.length} result
       </div>
-    </div>
+    </MainLayout>
   );
 }
