@@ -1,11 +1,17 @@
+import { logout } from "../../services/service.logout";
 import Button from "../elements/Button";
 
 export default function MainLayout(props) {
   const { children, email } = props;
 
   const handleClick = () => {
-    localStorage.clear();
-    window.location.href = "/login";
+    logout((success, message) => {
+      if (success) {
+        localStorage.removeItem("token");
+        console.log(message);
+        window.location.href = "/login";
+      }
+    });
   };
 
   return (
@@ -15,7 +21,7 @@ export default function MainLayout(props) {
         <Button
           buttonText="Logout"
           type="button"
-          classname="w-16"
+          classname="max-w-fit px-2"
           handleClick={() => handleClick("")}
         ></Button>
       </div>

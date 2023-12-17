@@ -1,16 +1,25 @@
 import { Link } from "react-router-dom";
 import Input from "../elements/Input";
 import Button from "../elements/Button";
+import { login } from "../../services/service.login";
 
 export default function LoginFragment(props) {
   const { namePage, question, destLink, destText } = props;
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem('email',e.target.email.value);
-    localStorage.setItem('password',e.target.password.value);
-    window.location.href="/products";
-  }
+    const user = {
+      email: e.target.email.value,
+      password: e.target.password.value,
+    };
+    login(user, (token) => {
+      if(token){
+        localStorage.setItem("token", token);
+        localStorage.setItem("email", e.target.email.value);
+        window.location.href = "/products";
+      }
+    });
+  };
 
   return (
     <div className="w-full max-w-xs border border-green-500 p-10 rounded-bl-3xl rounded-tr-3xl">

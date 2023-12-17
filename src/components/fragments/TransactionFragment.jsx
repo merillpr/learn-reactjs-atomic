@@ -1,8 +1,7 @@
-export default function ProductFragment(props) {
+export default function TransactionFragment(props) {
   const { children, id } = props;
-  console.log(id);
   return (
-    <a href={`/product`}>
+    <a href={`/transaction-detail/${id}`}>
       <div className="w-80 h-72 shadow-md rounded-md bg-white py-2 px-4">
         {children}
       </div>
@@ -73,5 +72,5 @@ function Body(props) {
   );
 }
 
-ProductFragment.Header = Header;
-ProductFragment.Body = Body;
+TransactionFragment.Header = Header;
+TransactionFragment.Body = Body;

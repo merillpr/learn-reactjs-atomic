@@ -4,8 +4,8 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./pages/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
-import ProductPage from "./pages/ProductPage.jsx";
-import DetailProductPage from "./pages/DetailProductPage.jsx";
+import TransactionPage from "./pages/TransactionPage.jsx";
+import DetailTransactionPage from "./pages/DetailTransactionPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -17,12 +17,12 @@ const router = createBrowserRouter([
     element: <RegisterPage />,
   },
   {
-    path: "/products",
-    element: <ProductPage />,
+    path: "/transaction",
+    element: <TransactionPage />,
   },
   {
-    path: "/product",
-    element: <DetailProductPage/>
+    path: `/transaction-detail/:id`,
+    element: <DetailTransactionPage/>
   },
 ]);
 
