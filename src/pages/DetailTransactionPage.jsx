@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import { getTransactionRecap } from "../services/service.transaction-recap";
 import { useEffect, useState } from "react";
 import { getTransactionRecapList } from "../services/service.transaction-recap-list";
+import Radio from "../components/elements/Radio";
+import { createTransaction } from "../services/service.transaction-create";
 
 export default function DetailTransactionPage() {
   const email = localStorage.getItem("email");
@@ -21,12 +23,32 @@ export default function DetailTransactionPage() {
     });
   }, [params.id]);
 
-  getTransactionRecapList(params.id);
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    const { quantity, status } = e.target;
+    if (quantity.value.trim() === "") {
+      alert("quantity must be filled");
+    } else if (status.value.trim() === "") {
+      alert("status must be filled");
+    } else {
+      const isPurchase = status.value === "in";
+      const transaction = {
+        product_id: product.product_id,
+        qty: quantity.value,
+        is_purchase: isPurchase,
+        price_id: product.price_id,
+      };
+      createTransaction(transaction, () => {
+        window.location.reload();
+      });
+    }
+  };
+
   return (
     <MainLayout email={email}>
       {product !== null && (
         <div className="flex justify-between w-screen h-screen mx-6">
-          <div className="w-3/5 h-2/3 shadow-md bg-white rounded-md p-4">
+          <div className="w-3/5 shadow-md bg-white rounded-md p-4">
             <div className="w-full h-3/5 flex justify-start ">
               <img src={product.product_id} />
               <div className="w-1/2 ml-5">
@@ -80,7 +102,7 @@ export default function DetailTransactionPage() {
                 </div>
               </div>
             </div>
-            <form>
+            <form onSubmit={handleOnSubmit}>
               <Input
                 classname="my-5"
                 labelName="Quantity"
@@ -88,18 +110,21 @@ export default function DetailTransactionPage() {
                 name="quantity"
                 placeText="enter product quantity..."
               />
-              <div className="flex justify-around">
+              <p className=" font-semibold">Status</p>
+              <div className="flex flex-row mb-5">
+                <Radio
+                  type="radio"
+                  name="status"
+                  label="in"
+                  classname="mr-6"
+                ></Radio>
+                <Radio type="radio" name="status" label="out"></Radio>
+              </div>
+              <div>
                 <Button
-                  buttonText="Product In"
+                  buttonText="Submit"
                   type="submit"
                   classname="w-1/3"
-                ></Button>
-                <Button
-                  buttonText="Product Out"
-                  type="submit"
-                  classname="w-1/3"
-                  color="bg-red-500"
-                  hover="bg-red-600"
                 ></Button>
               </div>
             </form>

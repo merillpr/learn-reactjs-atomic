@@ -22,7 +22,7 @@ const router = createBrowserRouter([
   },
   {
     path: `/transaction-detail/:id`,
-    element: <DetailTransactionPage/>
+    element: <DetailTransactionPage />,
   },
 ]);
 

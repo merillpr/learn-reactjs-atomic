@@ -16,7 +16,7 @@ export default function LoginFragment(props) {
       if(token){
         localStorage.setItem("token", token);
         localStorage.setItem("email", e.target.email.value);
-        window.location.href = "/products";
+        window.location.href = "/transaction";
       }
     });
   };
