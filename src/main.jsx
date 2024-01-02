@@ -8,6 +8,8 @@ import TransactionPage from "./pages/TransactionPage.jsx";
 import DetailTransactionPage from "./pages/DetailTransactionPage.jsx";
 import ProductPage from "./pages/ProductPage.jsx";
 import ProductCreateUpdatePage from "./pages/ProductCreateUpdatePage.jsx";
+import PriceCreateUpdatePage from "./pages/PriceCreateUpdatePage.jsx";
+import PricePage from "./pages/PricePage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,18 @@ const router = createBrowserRouter([
   {
     path: "/product-add/:id",
     element: <ProductCreateUpdatePage />,
+  },
+  {
+    path: "/price",
+    element: <PricePage />,
+  },
+  {
+    path: "/price-add",
+    element: <PriceCreateUpdatePage />,
+  },
+  {
+    path: "/price-add/:id",
+    element: <PriceCreateUpdatePage />,
   },
 ]);
 
