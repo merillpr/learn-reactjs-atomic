@@ -10,6 +10,7 @@ import ProductPage from "./pages/ProductPage.jsx";
 import ProductCreateUpdatePage from "./pages/ProductCreateUpdatePage.jsx";
 import PriceCreateUpdatePage from "./pages/PriceCreateUpdatePage.jsx";
 import PricePage from "./pages/PricePage.jsx";
+import TransactionCreateUpdatePage from "./pages/TransactionCreateUpdatePage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,14 @@ const router = createBrowserRouter([
   {
     path: "/transaction",
     element: <TransactionPage />,
+  },
+  {
+    path: "/transaction-add",
+    element: <TransactionCreateUpdatePage />,
+  },
+  {
+    path: `/transaction-update/:id`,
+    element: <TransactionCreateUpdatePage />,
   },
   {
     path: `/transaction-detail/:id`,

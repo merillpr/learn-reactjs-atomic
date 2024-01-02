@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import TransactionFragment from "../components/fragments/TransactionFragment";
 import MainLayout from "../components/layouts/MainLayout";
 import { getTransactionRecaps } from "../services/service.transaction-recaps";
+import Button from "../components/elements/Button";
 
 export default function TransactionPage() {
   const [products, setProducts] = useState([]);
@@ -14,6 +15,15 @@ export default function TransactionPage() {
 
   return (
     <MainLayout>
+      <div className="w-5/6 h-10">
+        <a href={`/transaction-add`}>
+          <Button
+            buttonText="Add Transaction"
+            type="button"
+            classname="w-28"
+          ></Button>
+        </a>
+      </div>
       <div className="grid grid-cols-3 gap-5 max-w-screen">
         {products.length > 0 &&
           products.map((product) => (

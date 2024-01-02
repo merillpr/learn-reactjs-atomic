@@ -53,6 +53,9 @@ export default function PriceCreateUpdatePage() {
 
     getProductList((data) => {
       setProducts(data);
+      if(!params.id){
+        setSelectedProductId(data[0].id);
+      }
     });
   }, [params.id]);
 
