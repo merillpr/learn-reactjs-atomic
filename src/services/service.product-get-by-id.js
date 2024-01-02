@@ -1,15 +1,16 @@
 import axios from "axios";
 
-export const getProducts = (callback) => {
+export const getProductById = (id, callback) => {
   const token = localStorage.getItem("token");
   const headers = {
     Authorization: `Bearer ${token}`,
+    "Content-Type": "application/json",
   };
 
   axios
-    .get("http://localhost/okesell/beokesell/public/api/transaction-recaps", { headers })
+    .get(`http://localhost/okesell/beokesell/public/api/product/${id}`, { headers })
     .then((response) => {
-      callback(response.data.results);
+      callback(response.data);
     })
     .catch((error) => {
       callback(error);

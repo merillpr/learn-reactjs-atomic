@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
 import TransactionFragment from "../components/fragments/TransactionFragment";
 import MainLayout from "../components/layouts/MainLayout";
-import { getProducts } from "../services/service.product";
+import { getTransactionRecaps } from "../services/service.transaction-recaps";
 
 export default function TransactionPage() {
-  const email = localStorage.getItem("email");
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    getProducts((data) => {
+    getTransactionRecaps((data) => {
       setProducts(data);
     });
   }, []);
 
   return (
-    <MainLayout email={email}>
+    <MainLayout>
       <div className="grid grid-cols-3 gap-5 max-w-screen">
         {products.length > 0 &&
           products.map((product) => (

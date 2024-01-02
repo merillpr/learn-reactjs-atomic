@@ -2,7 +2,8 @@ import { logout } from "../../services/service.logout";
 import Button from "../elements/Button";
 
 export default function MainLayout(props) {
-  const { children, email } = props;
+  const { children } = props;
+  const email = localStorage.getItem("email");
 
   const handleClick = () => {
     logout((success, message) => {
