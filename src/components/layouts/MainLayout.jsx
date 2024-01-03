@@ -29,7 +29,7 @@ export default function MainLayout(props) {
           </a>
         </div>
         <div className="mr-10">
-          <a href="/product" className="hover:text-green-500">
+          <a href="/price" className="hover:text-green-500">
             Price
           </a>
         </div>
