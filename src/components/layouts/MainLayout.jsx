@@ -18,6 +18,21 @@ export default function MainLayout(props) {
   return (
     <>
       <div className="w-full bg-white py-3 px-5 flex justify-end items-center shadow-md fixed">
+        <div className="mr-4">
+          <a href="/transaction" className="hover:text-green-500">
+            Transaction
+          </a>
+        </div>
+        <div className="mr-4">
+          <a href="/product" className="hover:text-green-500">
+            Product
+          </a>
+        </div>
+        <div className="mr-10">
+          <a href="/product" className="hover:text-green-500">
+            Price
+          </a>
+        </div>
         <div className="mr-4 font-medium">{email}</div>
         <Button
           buttonText="Logout"

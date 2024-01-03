@@ -1,15 +1,39 @@
 import { Link } from "react-router-dom";
 import Input from "../elements/Input";
 import Button from "../elements/Button";
+import { register } from "../../services/service.register";
 
 export default function LoginFragment(props) {
   const { namePage, question, destLink, destText } = props;
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    const user = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      password: e.target.password.value,
+      password_confirmation: e.target.confirmPassword.value,
+    };
+    register(user, (data) => {
+      if(data.success){
+        window.location.href = "/login";
+      }
+    });
+  };
 
   return (
     <div className="w-full max-w-xs border border-green-500 p-10 rounded-bl-3xl rounded-tr-3xl">
       <h1 className="text-green-500 text-xl font-bold">{namePage}</h1>
       <p className="mb-6">Welcome back, insert your identity below!</p>
-      <form action="">
+      <form onSubmit={handleOnSubmit}>
+        <div className="mb-3">
+          <Input
+            labelName="Name"
+            typeInput="text"
+            name="name"
+            placeText="enter your name..."
+          />
+        </div>
         <div className="mb-3">
           <Input
             labelName="Email"
@@ -38,7 +62,10 @@ export default function LoginFragment(props) {
       </form>
       <p className="text-center">
         {question}{" "}
-        <Link to={`/${destLink}`} className="text-green-500 font-semibold hover:text-green-600">
+        <Link
+          to={`/${destLink}`}
+          className="text-green-500 font-semibold hover:text-green-600"
+        >
           {destText}
         </Link>
       </p>
