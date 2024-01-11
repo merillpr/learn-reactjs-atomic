@@ -42,6 +42,7 @@ export default function PricePage() {
           <thead className="w-full bg-green-500 text-white font-semibold">
             <tr>
               <th className="w-1/8">No</th>
+              <th>Product Name</th>
               <th>Purchase Price</th>
               <th>Sellling Price</th>
               <th>Action</th>
@@ -52,6 +53,7 @@ export default function PricePage() {
               prices.map((price, i) => (
                 <tr key={i}>
                   <td className="w-1/8 text-center">{i + 1}</td>
+                  <td>{price.name}</td>
                   <td>{price.purchase_price}</td>
                   <td>{price.selling_price}</td>
                   <td className="text-center">

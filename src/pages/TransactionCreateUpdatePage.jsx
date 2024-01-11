@@ -16,6 +16,7 @@ export default function TransactionCreateUpdatePage() {
   const [products, setProducts] = useState(null);
   const [selectedPriceId, setSelectedPriceId] = useState(null);
   const [selectedProductId, setSelectedProductId] = useState(null);
+  const [filteredPrices, setFilteredPrices] = useState(null);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -42,7 +43,10 @@ export default function TransactionCreateUpdatePage() {
   };
 
   const handleSelectProductChange = (e) => {
-    setSelectedProductId(e.target.value);
+    const id = e.target.value;
+    setSelectedProductId(id);
+    const filteredPrices = prices.filter((price) => price.product_id == id);
+    setFilteredPrices(filteredPrices.length > 0 ? filteredPrices : null);
   };
 
   const handleSelectPriceChange = (e) => {
@@ -69,6 +73,7 @@ export default function TransactionCreateUpdatePage() {
 
     getPriceList((data) => {
       setPrices(data);
+      setFilteredPrices(data);
       if (!params.id) {
         setSelectedPriceId(data[0].id);
       }
@@ -97,13 +102,13 @@ export default function TransactionCreateUpdatePage() {
                 </select>
               </div>
             )}
-            {prices && (
+            {filteredPrices && (
               <div>
                 <select
                   value={selectedPriceId}
                   onChange={handleSelectPriceChange}
                 >
-                  {prices.map((price, i) => (
+                  {filteredPrices.map((price, i) => (
                     <option key={i} value={price.id}>
                       purchase: {price.purchase_price}, selling:{" "}
                       {price.selling_price}
@@ -140,21 +145,26 @@ export default function TransactionCreateUpdatePage() {
                 </select>
               </div>
             )}
-            {prices && (
+            {filteredPrices ? (
               <div>
                 <select
                   value={selectedPriceId}
                   onChange={handleSelectPriceChange}
                 >
-                  <option value="" disabled>
-                    Select a price
-                  </option>
-                  {prices.map((price, i) => (
+                  {filteredPrices.map((price, i) => (
                     <option key={i} value={price.id}>
                       purchase: {price.purchase_price}, selling:{" "}
                       {price.selling_price}
                     </option>
                   ))}
+                </select>
+              </div>
+            ) : (
+              <div>
+                <select value="" onChange={handleSelectPriceChange}>
+                  <option value="" disabled>
+                    No prices available
+                  </option>
                 </select>
               </div>
             )}
