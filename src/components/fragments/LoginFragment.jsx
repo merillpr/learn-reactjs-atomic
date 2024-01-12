@@ -12,11 +12,13 @@ export default function LoginFragment(props) {
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    login(user, (token) => {
-      if(token){
-        localStorage.setItem("token", token);
+    login(user, (data) => {
+      if(data.success){
+        localStorage.setItem("token", data.results.token);
         localStorage.setItem("email", e.target.email.value);
         window.location.href = "/transaction";
+      }else{
+        alert("Email or password was wrong!")
       }
     });
   };
