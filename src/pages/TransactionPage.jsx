@@ -26,8 +26,8 @@ export default function TransactionPage() {
       </div>
       <div className="grid grid-cols-3 gap-5 max-w-screen">
         {products.length > 0 &&
-          products.map((product) => (
-            <TransactionFragment key={product.id} id={product.id}>
+          products.map((product, id) => (
+            <TransactionFragment key={id} id={product.id}>
               <TransactionFragment.Header image={product.id} />
               <TransactionFragment.Body
                 name={product.name.substring(0, 30) + "..."}

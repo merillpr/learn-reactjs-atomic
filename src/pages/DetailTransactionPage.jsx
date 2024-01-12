@@ -7,19 +7,29 @@ import { useEffect, useState } from "react";
 import { getTransactionRecapList } from "../services/service.transaction-recap-list";
 import Radio from "../components/elements/Radio";
 import { createTransaction } from "../services/service.transaction-create";
+import ReactPaginate from "react-paginate";
 
 export default function DetailTransactionPage() {
   const email = localStorage.getItem("email");
   const [product, setProduct] = useState(null);
   const [transactions, setTransactions] = useState([]);
   const params = useParams();
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 15;
+  const indexOfLastItem = (currentPage + 1) * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = transactions.slice(indexOfFirstItem, indexOfLastItem);
 
   useEffect(() => {
     getTransactionRecap(params.id, (data) => {
       setProduct(data);
     });
     getTransactionRecapList(params.id, (data) => {
-      setTransactions(data);
+      const newData = data.map((tr, i) => ({
+        number: i + 1,
+        ...tr,
+      }));
+      setTransactions(newData);
     });
   }, [params.id]);
 
@@ -47,9 +57,9 @@ export default function DetailTransactionPage() {
   return (
     <MainLayout email={email}>
       {product !== null && (
-        <div className="flex justify-between w-screen h-screen mx-6">
+        <div className="flex justify-between w-screen h-3/5 mx-6">
           <div className="w-3/5 shadow-md bg-white rounded-md p-4">
-            <div className="w-full h-3/5 flex justify-start ">
+            <div className="w-full h-2/5 flex justify-start ">
               <img src={product.product_id} />
               <div className="w-1/2 ml-5">
                 <h1 className="mb-1 font-semibold text-green-500">
@@ -104,7 +114,7 @@ export default function DetailTransactionPage() {
             </div>
             <form onSubmit={handleOnSubmit}>
               <Input
-                classname="my-5"
+                classname="my-12"
                 labelName="Quantity"
                 typeInput="quantity"
                 name="quantity"
@@ -131,28 +141,47 @@ export default function DetailTransactionPage() {
           </div>
           {transactions.length > 0 && (
             <div className="w-2/5 p-4">
-              <table className="w-full">
-                <thead>
-                  <tr>
-                    <th className="w-1/5">No</th>
-                    <th className="w-2/5">Date</th>
-                    <th className="w-1/5">Status</th>
-                    <th className="w-1/5">Qty</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {transactions.map((tr, i) => (
-                    <tr key={tr.id}>
-                      <td className="w-1/5 text-center">{i + 1}</td>
-                      <td className="w-2/5 text-center">
-                        {tr.created_at.substring(0, 10)}
-                      </td>
-                      <td className="w-1/5 text-center">{tr.status}</td>
-                      <td className="w-1/5 text-center">{tr.qty}</td>
+              <div className="h-[400px]">
+                <table className="w-full">
+                  <thead>
+                    <tr>
+                      <th className="w-1/5">No</th>
+                      <th className="w-2/5">Date</th>
+                      <th className="w-1/5">Status</th>
+                      <th className="w-1/5">Qty</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {currentItems.map((tr) => (
+                      <tr key={tr.number}>
+                        <td className="w-1/5 text-center">{tr.number}</td>
+                        <td className="w-2/5 text-center">
+                          {tr.created_at.substring(0, 10)}
+                        </td>
+                        <td className="w-1/5 text-center">{tr.status}</td>
+                        <td className="w-1/5 text-center">{tr.qty}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <ReactPaginate
+                previousLabel={"previous"}
+                nextLabel={"next"}
+                breakLabel={"..."}
+                pageCount={Math.ceil(transactions.length / itemsPerPage)}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                onPageChange={(data) => setCurrentPage(data.selected)}
+                containerClassName={"flex justify-center mt-8"}
+                pageClassName={"mx-2 cursor-pointer hover:text-gray-500"}
+                breakClassName={"mx-2 cursor-pointer"}
+                previousClassName={"mx-3 cursor-pointer hover:text-gray-500"}
+                nextClassName={"mx-3 cursor-pointer hover:text-gray-500"}
+                activeClassName={
+                  "bg-blue-500 text-white px-3 py-1 rounded-full hover:text-white"
+                }
+              />
             </div>
           )}
         </div>
