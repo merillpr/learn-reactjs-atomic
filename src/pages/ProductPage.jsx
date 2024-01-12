@@ -11,8 +11,12 @@ export default function ProductPage() {
   const [products, setProducts] = useState(null);
 
   const handleOnDelete = (id) => {
-    deleteProduct(id, () => {
-      window.location.reload();
+    deleteProduct(id, (data) => {
+      if (!data.success) {
+        alert(data.message);
+      } else {
+        window.location.reload();
+      }
     });
   };
 

@@ -12,6 +12,6 @@ export const deleteProduct = (id, callback) => {
       callback(response.data);
     })
     .catch((error) => {
-      callback(error);
+      callback(error.response.data);
     });
 };

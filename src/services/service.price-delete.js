@@ -7,11 +7,13 @@ export const deletePrice = (id, callback) => {
   };
 
   axios
-    .delete(`http://localhost/okesell/beokesell/public/api/price/${id}`, { headers })
+    .delete(`http://localhost/okesell/beokesell/public/api/price/${id}`, {
+      headers,
+    })
     .then((response) => {
       callback(response.data);
     })
     .catch((error) => {
-      callback(error);
+      callback(error.response.data);
     });
 };

@@ -11,8 +11,12 @@ export default function PricePage() {
   const [prices, setPrices] = useState(null);
 
   const handleOnDelete = (id) => {
-    deletePrice(id, () => {
-      window.location.reload();
+    deletePrice(id, (data) => {
+      if (!data.success) {
+        alert(data.message);
+      } else {
+        window.location.reload();
+      }
     });
   };
 
