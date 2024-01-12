@@ -40,6 +40,11 @@ export default function DetailTransactionPage() {
       alert("quantity must be filled");
     } else if (status.value.trim() === "") {
       alert("status must be filled");
+    } else if (
+      product.stock < e.target.quantity.value &&
+      e.target.status.value != "in"
+    ) {
+      alert("Quantity over than stock");
     } else {
       const isPurchase = status.value === "in";
       const transaction = {

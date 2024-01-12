@@ -54,8 +54,18 @@ export default function PricePage() {
                 <tr key={i}>
                   <td className="w-1/8 text-center">{i + 1}</td>
                   <td>{price.name}</td>
-                  <td>{price.purchase_price}</td>
-                  <td>{price.selling_price}</td>
+                  <td>
+                    {price.purchase_price.toLocaleString("id-ID", {
+                      style: "currency",
+                      currency: "IDR",
+                    })}
+                  </td>
+                  <td>
+                    {price.selling_price.toLocaleString("id-ID", {
+                      style: "currency",
+                      currency: "IDR",
+                    })}
+                  </td>
                   <td className="text-center">
                     <FontAwesomeIcon
                       className="text-red-500"
