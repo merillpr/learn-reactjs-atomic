@@ -16,7 +16,7 @@ export default function LoginFragment(props) {
     };
     register(user, (data) => {
       if(data.success){
-        window.location.href = "/login";
+        window.location.href = `/verify-email/${data.results.id}`;
       }
     });
   };

@@ -55,6 +55,15 @@ export default function LoginFragment(props) {
           {destText}
         </Link>
       </p>
+      <p className="text-center">
+        Or verify your email? 
+        <Link
+          to={`/resend-verification-code`}
+          className="text-green-500 font-semibold hover:text-green-600"
+        >
+          {`${" "}Verify Email`}
+        </Link>
+      </p>
     </div>
   );
 }

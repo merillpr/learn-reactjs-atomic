@@ -11,6 +11,8 @@ import ProductCreateUpdatePage from "./pages/ProductCreateUpdatePage.jsx";
 import PriceCreateUpdatePage from "./pages/PriceCreateUpdatePage.jsx";
 import PricePage from "./pages/PricePage.jsx";
 import TransactionCreateUpdatePage from "./pages/TransactionCreateUpdatePage.jsx";
+import VerifyPage from "./pages/VerifyPage.jsx";
+import ResendVerificationPage from "./pages/ResendVerificationPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +62,14 @@ const router = createBrowserRouter([
   {
     path: "/price-add/:id",
     element: <PriceCreateUpdatePage />,
+  },
+  {
+    path: "/verify-email/:id",
+    element: <VerifyPage />,
+  },
+  {
+    path: "/resend-verification-code",
+    element: <ResendVerificationPage/>,
   },
 ]);
 
